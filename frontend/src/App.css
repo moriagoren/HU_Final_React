@@ -1,0 +1,33 @@
+.app-style {
+    background-color: rgb(227, 242, 253);
+}
+
+.favorite {
+    color: rgb(198, 24, 24);
+}
+
+.cards-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-auto-rows: auto;
+
+    grid-gap: 1rem;
+    margin: 2rem;
+}
+
+.card-wrap {
+
+    border: 2px solid #e7e7e7;
+
+}
+
+.main-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    background-color: rgb(86, 232, 255);
+}

@@ -1,0 +1,17 @@
+
+ 
+ .container-footer{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+.header{
+    background-color: rgb(25,118,211);
+   
+}
+.navbar-brand{
+   color: white;
+}
