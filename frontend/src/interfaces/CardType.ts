@@ -14,5 +14,6 @@ export interface CardType {
     street?: string | null,
     houseNumber?: string | null,
     zip?: string | null
+    status?: any
 
 }

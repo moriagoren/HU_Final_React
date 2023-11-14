@@ -1,29 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Title from "../components/Title";
 import { CardType } from "../interfaces/CardType";
-import { getCards } from "../services/ApiServices";
+import { deleteCard, getCards } from "../services/ApiServices";
 import Card from "../components/Card";
+import { toast } from "react-toastify";
+import { SearchContext } from "../context/SearchContext";
 
 
 
 function Home() {
     const [cards, setCards] = useState<Array<CardType>>([]);
+    const [filteredData, setFilteredData] = useState<Array<CardType>>([]);
+    const { searchValue, setSearchValue } = useContext(SearchContext)
     useEffect(() => {
         getCards()
             .then(json => {
-                console.log(json);
                 setCards(json);
             })
+
     }, []);
+
+    useEffect(() => {
+        const filtered = cards.filter((item) => item.title?.toLowerCase().includes(searchValue.toLowerCase()) || item.description?.toLowerCase().includes(searchValue.toLowerCase()))
+        setFilteredData(filtered)
+    }, [searchValue, cards])
+    function handledelete(id: string) {
+
+    }
     return (
         <>
-            <Title mainText="Crads Page"
+            <Title mainText="Cards Page"
                 subText="Here you can find business cards from all categories" />
             <div className="row">
-                {cards.map((card) =>
+                {filteredData.map((card) =>
 
                     <Card {...card}
                         key={card._id}
+                        handleDelete={() => handledelete(card._id!)}
                     />
 
                 )}

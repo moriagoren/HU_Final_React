@@ -127,14 +127,16 @@ module.exports = {
             const token = signToken(user._id);
 
             res.json({
-                token: token,
-                _id: user._id,
-                email: user.email,
-                firstName: user.firstName,
-                admin: user.admin,
-                biz: user.biz,
-                isBlocked: user.isBlocked,
-                favorites: user.favorites,
+                user: {
+                    token: token,
+                    _id: user._id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    admin: user.admin,
+                    biz: user.biz,
+                    isBlocked: user.isBlocked,
+                    favorites: user.favorites,
+                }
             });
         } catch (err) {
             //   const user = await User.findOne({ email: req.body.email });

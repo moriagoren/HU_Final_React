@@ -1,4 +1,5 @@
 const Card = require("../models/Card");
+const User = require("../models/User");
 const joi = require("joi");
 
 module.exports = {
@@ -9,6 +10,48 @@ module.exports = {
         } catch (err) {
             console.log(err);
             res.status(400).json({ error: "error getting cards" });
+        }
+    },
+    getOneCard: async function (req, res, next) {
+        try {
+            const scheme = joi.object({
+                _id: joi.string().required(),
+            });
+
+            const { error, value } = scheme.validate({ _id: req.params.id });
+
+            if (error) {
+                console.log(error.details[0].message);
+                res.status(400).json({ error: "invalid data" });
+                return;
+            }
+
+            const result = await Card.findOne({ _id: value._id });
+            res.json(result);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json({ error: "error getting the card" });
+        }
+    },
+    myCards: async function (req, res, next) {
+        try {
+            const scheme = joi.object({
+                _id: joi.string(),
+            });
+
+            const { error, value } = scheme.validate({ _id: req.params._id });
+
+            if (error) {
+                console.log(error.details[0].message);
+                res.status(400).json({ error: "invalid data" });
+                return;
+            }
+
+            const result = await Card.find({ userId: value._id });
+            res.json(result);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json({ error: "error getting your cards" });
         }
     },
     add: async function (req, res, next) {
@@ -62,7 +105,7 @@ module.exports = {
         try {
             const scheme = joi.object({
                 title: joi.string().required().min(2).max(30),
-                subtitle: joi.string().required().min(2).max(30),
+                subTitle: joi.string().required().min(2).max(30),
                 description: joi.string().required().min(5).max(3000),
                 phone: joi.string().required().min(6).max(250),
                 email: joi.string().max(150).required().email(),
@@ -108,7 +151,7 @@ module.exports = {
                 _id: joi.string().required(),
             });
 
-            const { error, value } = scheme.validate({ _id: req.params.id });
+            const { error, value } = scheme.validate({ _id: req.params._id });
 
             if (error) {
                 console.log(error.details[0].message);
@@ -125,5 +168,61 @@ module.exports = {
             res.status(400).json({ error: "error delete vacation" });
         }
     },
+    getUserFavorites: async function (req, res, next) {
+        try {
+            const user = await User.findById(req.user._id).populate('favorites');
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
 
+
+            const favoriteCards = user.favorites
+
+            return res.status(200).json(favoriteCards);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json({ error: "error setting favorite" });
+        }
+    },
+    setFavorite: async function (req, res, next) {
+        const cardId = req.params.id;
+        const userId = req.user._id;
+        let status = false;
+        try {
+            const card = await Card.findById(cardId);
+            const user = await User.findById(userId);
+            if (!card) {
+                return res.status(404).json({ message: "Card not found" });
+            }
+
+            const cardIndex = card.favorites.indexOf(userId);
+            const userIndex = user.favorites.indexOf(cardId);
+
+            if (cardIndex === -1) {
+                card.favorites.push(userId);
+                status = true;
+            } else {
+                card.favorites.splice(cardIndex, 1);
+                status = false;
+            }
+
+            if (userIndex === -1) {
+                user.favorites.push(cardId);
+            } else {
+                user.favorites.splice(userIndex, 1);
+            }
+
+            await card.save();
+            await user.save();
+            const { title } = card;
+
+            return res.status(200).json({ title, status });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err.message,
+            });
+        }
+    },
 };

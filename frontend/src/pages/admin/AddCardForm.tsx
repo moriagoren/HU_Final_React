@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Title from "../components/Title";
+import Title from "../../components/Title";
 import { useNavigate } from "react-router-dom";
-import FormLayout from "../components/FormLayout";
-import { addCard } from "../services/ApiServices";
+import FormLayout from "../../components/FormLayout";
+import { addCard } from "../../services/ApiServices";
+import { toast } from "react-toastify";
 
 
 function AddCardForm() {
@@ -41,8 +42,8 @@ function AddCardForm() {
             zip,
         }).then((card) => {
             console.log(card);
-            navigate('/Card')
-
+            navigate('/adminarea')
+            toast.success("Added successfully")
 
         }).catch(() => {
         });

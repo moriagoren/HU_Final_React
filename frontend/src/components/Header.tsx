@@ -5,10 +5,20 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import BtnLight from "./BtnLight";
+import { verifyAdmin, verifyToken } from "../auth/TokenManager";
+import Logout from "../auth/Logout";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import { SearchContext } from "../context/SearchContext";
 
 
 function Header() {
+  const { userData } = useContext(UserContext)
+  const { searchValue, setSearchValue } = useContext(SearchContext)
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+  }
   return (
     <Navbar expand="lg" className="header">
 
@@ -17,33 +27,26 @@ function Header() {
           BCARD
         </NavLink>
 
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <NavLink to="/Details" className="navbar-brand">
-              DETAILS
-            </NavLink>
 
 
             <NavLink to="/about" className="navbar-brand">
               ABOUT
             </NavLink>
+            {verifyToken() && (
 
-            <NavLink to="/favcards" className="navbar-brand">
-              FAV CARDS
-            </NavLink>
-            <NavLink to="/mycards" className="navbar-brand">
-              MY CARDS
-            </NavLink>
-            <NavLink to="/addcard" className="navbar-brand">
-              ADD CARD
-            </NavLink>
-            <NavLink to="/EditCardForm" className="navbar-brand">
-              EDIT CARD
-            </NavLink>
+              <>
+                <NavLink to="/favcards" className="navbar-brand">
+                  FAV CARDS
+                </NavLink>
+              </>
+            )}
+
           </Nav>
 
 
@@ -54,21 +57,42 @@ function Header() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={searchValue}
+                onChange={handleSearchChange}
               />
             </Form>
 
             <BtnLight />
+            {verifyAdmin() && (
+              <NavLink to="/admin" className="navbar-brand">
+                Admin area
+              </NavLink>
+            )}
+            {!userData?.token && (
+              <>
+                <NavLink to="/login" className="navbar-brand">
+                  login
+                </NavLink>
+                <NavLink to="/signup" className="navbar-brand">
+                  signup
+                </NavLink>
+              </>
 
-            <NavLink to="/login" className="navbar-brand">
-              login
-            </NavLink>
-            <NavLink to="/signup" className="navbar-brand">
-              signup
-            </NavLink>
+            )}
+            {userData?.admin && (
+              <NavLink to="/adminarea" className="navbar-brand">
+                ADMIN AREA
+              </NavLink>
+            )}
+            {userData?.token && (
+
+              <Logout />
+            )}
+
 
 
           </Nav>
-        </Navbar.Collapse>
+        </Navbar>
       </Container>
     </Navbar>
   );

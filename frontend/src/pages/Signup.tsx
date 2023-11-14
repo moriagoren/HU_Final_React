@@ -91,9 +91,9 @@ function Signup() {
 
     }
     function handleClick() {
-        // if (!validate()) {
-        //     return;
-        // }
+        if (!validate()) {
+            return;
+        }
 
 
         signup({
@@ -117,6 +117,8 @@ function Signup() {
             console.log(user);
 
             navigate("/login");
+            toast.success("You have successfully registered")
+
         })
     }
 

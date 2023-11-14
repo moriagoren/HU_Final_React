@@ -1,6 +1,6 @@
 import "./../App.css";
 
-function DetailsCards() {
+export function DetailsCards() {
   return (
     <>
       <div className="main-wrap">

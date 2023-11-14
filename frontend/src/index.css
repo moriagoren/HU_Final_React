@@ -1,17 +1,16 @@
-
- 
- .container-footer{
-    text-align: center;
-    display: flex;
-    justify-content: center;
+.container-footer {
+   text-align: center;
+   display: flex;
+   justify-content: center;
 
 
-  }
-
-.header{
-    background-color: rgb(25,118,211);
-   
 }
-.navbar-brand{
+
+.header {
+   background-color: rgb(197, 225, 255);
+
+}
+
+.navbar-brand {
    color: white;
 }

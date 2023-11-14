@@ -6,18 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import { AppContext } from "../App";
 import Title from "../components/Title";
-import { setToken } from "../auth/TokenManager";
+import { setToken, setUser } from "../auth/TokenManager";
 import { login } from "../services/ApiServices";
 import FormLayout from "../components/FormLayout";
+import { UserContext } from "../context/userContext";
 
 
 function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { setUserData } = useContext(UserContext)
   const navigate = useNavigate();
-  // const context = useContext(AppContext);
 
   function validate(): boolean {
     if (!email) { // also check that email is required with regex
@@ -25,8 +25,8 @@ function Login() {
       return false
     }
 
-    if (!password || password.length < 8) {
-      toast.error('Password must contain at least 8 characters.')
+    if (!password || password.length < 6) {
+      toast.error('Password must contain at least 6 characters.')
       return false
     }
 
@@ -34,20 +34,24 @@ function Login() {
   }
 
   function handleClick() {
-    if (!validate()) {
-      console.log("invalid");
+    if (!validate()) return;
 
-      return;
-    }
-    console.log("valid");
 
     login({
       email,
       password,
     })
-      .then((user) => {
-        setToken(user.token)
+      .then((data) => {
+
+        if (data.user.token) {
+
+          setToken(data?.user?.token)
+          setUser(data?.user)
+          setUserData(data?.user)
+        }
+
         navigate('/')
+        toast.success("Logged in")
       })
   }
 

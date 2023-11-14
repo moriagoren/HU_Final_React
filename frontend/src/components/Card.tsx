@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CardType } from "../interfaces/CardType";
+import { deleteCard } from "../services/ApiServices";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
-
+interface DeleteMe extends CardType {
+  handleDelete: (id: string) => void
+}
 export function Card({
   _id,
   title,
@@ -18,10 +23,11 @@ export function Card({
   street,
   houseNumber,
   zip,
+  handleDelete
+}: DeleteMe) {
 
-}: CardType) {
-
-
+  const { userData } = useContext(UserContext)
+  const navigate = useNavigate()
   return (
     <>
       <div className="card m-2" style={{ width: "18rem" }}>
@@ -38,28 +44,39 @@ export function Card({
         </ul>
         <div className="card-body">
           <div className="d-flex aligh-items">
-            <div className="d-flex  justify-content-start">
 
+            {userData?.admin && (
+              <>
+                <div className="justify-content-end ">
 
-              <button
-                className="btn btn-light"
-              //onClick={() => onDelete(Card._id)}
-              >
-                <i className="bi bi-trash"></i>
-              </button>   </div>
+                  <button
+                    className="btn btn-light"
+                    onClick={() => handleDelete(_id as string)}
+                  >
+                    <i className="bi bi-trash p-2"></i>
+                  </button>
+
+                </div>
+                <div className="justify-content-end ">
+
+                  <button
+                    className="btn btn-light"
+                    onClick={() => navigate(`/EditCardForm/${_id}`)}
+                  >
+                    <i className="bi bi-pencil-square p-2"></i>
+                  </button>
+
+                </div>
+              </>
+            )}
+
             <div className="justify-content-end ">
 
               <button
                 className="btn btn-light"
               >
-                <i className="bi bi-pencil p-2"></i>
-              </button>
-              <button
-                className="btn btn-light"
-              >
                 <i className="bi bi-suit-heart-fill p-2"></i>
               </button>
-
 
             </div>
           </div>
@@ -71,8 +88,5 @@ export function Card({
 
   );
 }
-
-
-
 
 export default Card;

@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-bootstrap'
+import { UserProvider } from './context/userContext';
+import { SearchProvider } from './context/SearchContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <SearchProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </SearchProvider>
     </BrowserRouter>
 
   </React.StrictMode>

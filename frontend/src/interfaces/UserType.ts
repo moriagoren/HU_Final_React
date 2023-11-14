@@ -17,4 +17,5 @@ export interface UserType {
     token?: string;
     admin?: boolean;
     biz?: boolean;
+    user?: any
 }
