@@ -29,6 +29,8 @@ export function MyCard({
 }: CardTypeProps) {
     const navigate = useNavigate()
     const [isRedHeart, setIsRedHeart] = useState(false)
+    console.log(isRedHeart);
+
     const toggleRed = () => {
         setIsRedHeart(!isRedHeart)
     }
@@ -77,7 +79,7 @@ export function MyCard({
                                 }}
                                 className="btn btn-light"
                             >
-                                <i className="bi bi-suit-heart-fill p-2" style={{}}></i>
+                                <i className="bi bi-suit-heart-fill p-2" style={{ color: isRedHeart ? "red" : "" }}></i>
                             </button>
 
 

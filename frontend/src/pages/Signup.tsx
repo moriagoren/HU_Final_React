@@ -130,7 +130,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         placeholder="First name *"
@@ -139,7 +139,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={middleName}
                         onChange={(e) => setMiddleName(e.target.value)}
 
@@ -149,7 +149,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={lastName}
                         placeholder="Last name *"
                         onChange={(e) => setLastName(e.target.value)}
@@ -159,7 +159,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={phone}
                         placeholder="Phone *"
                         onChange={(e) => setPhone(e.target.value)}
@@ -168,7 +168,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={email}
                         placeholder="Email *"
                         onChange={(e) => setEmail(e.target.value)}
@@ -177,7 +177,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="password"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={password}
                         placeholder="Password *"
                         onChange={(e) => setPassword(e.target.value)}
@@ -186,7 +186,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={imageUrl}
                         placeholder="Image url"
                         onChange={(e) => setImageUrl(e.target.value)}
@@ -195,7 +195,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={imageAlt}
                         placeholder="Image alt"
                         onChange={(e) => setImageAlt(e.target.value)}
@@ -204,7 +204,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={state}
                         placeholder="State"
                         onChange={(e) => setState(e.target.value)}
@@ -213,7 +213,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={country}
                         placeholder="Country *"
                         onChange={(e) => setCountry(e.target.value)}
@@ -222,7 +222,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={city}
                         placeholder="City *"
                         onChange={(e) => setCity(e.target.value)}
@@ -231,7 +231,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={street}
                         placeholder="Street *"
                         onChange={(e) => setStreet(e.target.value)}
@@ -240,7 +240,7 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={houseNumber}
                         placeholder="House number *"
                         onChange={(e) => setHouseNumber(e.target.value)}
@@ -249,34 +249,28 @@ function Signup() {
                 <div className="mb-3">
                     <input
                         type="text"
-                        className="form-control me-3"
+                        className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
                         value={zip}
                         placeholder="Zip"
                         onChange={(e) => setZip(e.target.value)}
                     />
                 </div>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <input
                         type="checkbox"
-                        className="checkbox me-3"
+                        className="checkbox me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary "
                         value={zip}
                         placeholder="isBiz"
                         onChange={(e) => setBiz(Boolean)}
                     />    Signup as business
-                </div>
+                </div> */}
 
 
             </FormLayout>
 
-            <div className="m-4 d-flex justify-content-center">
-                <button className="me-2 col-3 btn btn-outline-danger">cancel</button>
-                <button className="me-2 col-3 btn btn-outline-primary">
 
-                    <i className="bi bi-arrow-repeat"></i>
-                </button>
-            </div>
             <div className="d-flex justify-content-center ">
-                <button type="button" className="col-6 btn btn-primary"
+                <button type="button" className="col-6 btn btn-primary rounded rounded-pill"
                     onClick={handleClick}>
                     submit
                 </button>

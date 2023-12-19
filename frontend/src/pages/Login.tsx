@@ -66,7 +66,7 @@ function Login() {
           <label className="form-label">Email</label>
           <input
             type="text"
-            className="form-control me-3"
+            className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -75,7 +75,7 @@ function Login() {
           <label className="form-label">Password</label>
           <input
             type="password"
-            className="form-control me-3"
+            className="form-control me-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded rounded-pill border border-primary"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -83,13 +83,8 @@ function Login() {
 
       </FormLayout>
 
-      <div className="m-4 d-flex justify-content-center">
-        <button className="me-2 col-3 btn btn-outline-danger">cancel</button>
-        <button className="me-2 col-3 btn btn-outline-primary"> <i className="bi bi-arrow-repeat"></i></button>
-
-      </div>
       <div className="d-flex justify-content-center ">
-        <button className="col-6 btn btn-primary"
+        <button className="col-6 btn btn-primary rounded rounded-pill "
           onClick={handleClick}
         >
           submit

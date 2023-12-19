@@ -107,7 +107,7 @@ export async function setFavorites(_id: string): Promise<CardType> {
 export async function getFavorites(): Promise<any> {
 
 
-    const res = await fetch(`${cardUrl}/favs`, {
+    const res = await fetch(`${cardUrl}favorites`, {
         method: "GET",
         headers: {
             'x-auth-token': getToken()

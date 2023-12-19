@@ -14,6 +14,8 @@ import EditCard from './pages/EditCardForm';
 import EditCardForm from './pages/EditCardForm';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './pages/admin/Dashboard';
+import Footer from './components/Footer';
+import CardPage from './pages/CardPage';
 
 function App() {
   return (
@@ -24,15 +26,15 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='signup' element={<Signup />} />
         <Route path="login" element={<Login />} />
-        {/* <Route path="Card" element={<MyCard />} /> */}
         <Route path="about" element={<About />} />
         <Route path="favcards" element={<Favcards />} />
         <Route path="mycards" element={<Mycards />} />
         <Route path="addcard" element={<AddCardForm />} />
         <Route path="EditCardForm/:id" element={<EditCardForm />} />
         <Route path="adminarea" element={<Dashboard />} />
+        <Route path="cardPage/:id" element={<CardPage />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

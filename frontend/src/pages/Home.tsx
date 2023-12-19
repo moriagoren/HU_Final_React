@@ -31,7 +31,7 @@ function Home() {
         <>
             <Title mainText="Cards Page"
                 subText="Here you can find business cards from all categories" />
-            <div className="row">
+            <div className="d-flex">
                 {filteredData.map((card) =>
 
                     <Card {...card}
