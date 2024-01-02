@@ -51,10 +51,10 @@ function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              {verifyAdmin() && (
+              {/* {verifyAdmin() && (
                 <Nav.Link href="/admin">Admin Area</Nav.Link>
 
-              )}
+              )} */}
               {!userData?.token && (
                 <>
                   <Nav.Link href="/signup">Signup</Nav.Link>
